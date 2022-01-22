@@ -1,6 +1,9 @@
 import React from 'react';
+import { CheckButton, Div, ErrorButton, Input, Label } from '../../styles/SignUp/forns';
+// styled components
 
-function Inputs({ placeholder, type, title, state, setState, regExp }) {
+
+function Inputs({ placeholder, type, title, state, setState, regExp, callback, icon }) {
   const handlerInputs = e => {
     setState({...state, value: e.target.value})
   }
@@ -12,19 +15,25 @@ function Inputs({ placeholder, type, title, state, setState, regExp }) {
         setState({...state, isValid: false})
       }
     }
+    if(callback) {
+      callback(); // this code is for validate password repeate
+    }
   }
   return (
     <div>
-      <label htmlFor=""> {title}: </label>
-      <div>
-        <input
+      <Label htmlFor=""> {title}: </Label>
+      <Div>
+        <Input
           type={type}
           placeholder={placeholder}
           required
           onChange={handlerInputs} 
           onKeyUp={validations}
           onBlur={validations} />
-      </div>
+        {icon ? 
+          !state.isValid ? <ErrorButton /> : <CheckButton />
+        : null} 
+      </Div>
     </div>
   );
 }

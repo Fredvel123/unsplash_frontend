@@ -1,4 +1,4 @@
-import React,  { useState } from 'react';
+import React from 'react';
 // components
 import LogIn from './components/LogIn';
 import SignUp from './components/SignUp';
@@ -11,16 +11,19 @@ import Home from './components/Home';
 // react router
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Erro404 from './components/Error404';
+import { useSelector } from 'react-redux';
+// redux
 
 function App() {
-  const [register, setregister] = useState(true);
+  const auth = useSelector(state => state.auth.value);
+
   return (
     <BrowserRouter>
       <Routes>
         <Route index element={<StartPage />} />
         <Route path='signup' element={<SignUp />} />
         <Route path='login' element={<LogIn />} />
-        <Route path='home' element={register ? <Home /> : <Erro404 /> } />
+        <Route path='home' element={auth.isLogged ? <Home /> : <Erro404 /> } />
       </Routes>      
     </BrowserRouter>
   );

@@ -1,27 +1,32 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 // styled components
-import { ButtonLeft, Header } from '../../styles/SignUp';
+import { ButtonLeft, DivBox, Header } from '../../styles/SignUp';
 // components
 import Inputs from './Inputs';
+// use navgate
+import { useNavigate } from "react-router-dom";
+
 
 function SignUp() {
   const [name, setName] = useState({value: '', isValid: null});
   const [email, setEmail] = useState({value: '', isValid: null});
   const [password, setPassword] = useState({value: '', isValid: null});
   const [repeatePasswd, setRepeatePasswd] = useState({value: '', isValid: null});
+  const [response, setResponse] = useState({error: false, message: ''});
+  const navigate = useNavigate();
   
   const handlerSubmit = e => {
     e.preventDefault();
     validPasswords();
-    if(name.isValid || email.isValid || password.isValid || repeatePasswd.isValid) {
-      signUpUser( name.value, email.value, password.value )
+    if(repeatePasswd.isValid & password.isValid & email.isValid & name.isValid){
+      signUpUser( name.value, email.value, password.value ) 
     } else {
-      console.log('something is bad');
+      setResponse({
+        error: true, 
+        message: 'something is bad, check it out your password, name or email'})
+      console.log(response);
     }
-    console.log(name);
-    console.log(email);
-    console.log(password);
-    console.log(repeatePasswd);
   }
   // regular expressions
   const regularExpressions = {
@@ -53,14 +58,27 @@ function SignUp() {
       })
     });
     const res = await newUser.json();
-    console.log(res);
+    setResponse({
+      error: false,
+      message: res
+    });
   }
-
-
+  const navigateStartPage = async () => {
+    const res = await response.message.isCreated
+    if(res === true) {
+      navigate("/", { replace: true });
+    }
+  }
+  useEffect(() => {
+    navigateStartPage();
+  }, [handlerSubmit]);
+  
   return(
-    <Fragment>
+    <DivBox>
       <Header>
-        <ButtonLeft />
+        <Link to='/' >
+          <ButtonLeft />
+        </Link>
         <h2>Sign Up</h2>
       </Header>
       <form action="" onSubmit={handlerSubmit} >
@@ -70,10 +88,12 @@ function SignUp() {
           title='Full Name'
           state={name}
           setState={setName}
-          regExp={regularExpressions.name} />
+          regExp={regularExpressions.name}
+          icon={true} />
         <Inputs 
           placeholder='alex_montreal@gmail.com' 
-          type='email' 
+          type='email'
+          icon={true} 
           title='email'
           state={email}
           setState={setEmail}
@@ -82,6 +102,7 @@ function SignUp() {
           placeholder='write your password here' 
           type='password' 
           title='Password'
+          icon={true}
           state={password}
           setState={setPassword}
           regExp={regularExpressions.password} />
@@ -90,10 +111,18 @@ function SignUp() {
           type='password' 
           title='Repeate Password'
           state={repeatePasswd}
-          setState={setRepeatePasswd} />
-        <button>send info</button>
+          icon={true}
+          setState={setRepeatePasswd}
+          callback={validPasswords} />
+        <button >Sign Up</button>
       </form>
-    </Fragment>
+      {response.error === true ?
+        <h3>{response.message}</h3> 
+      : <h3>{response.message.message}</h3> }
+      {/* {response.message.isCreated ? 
+      : null} */}
+      {/* <LINK to='/home' >Go to Home</LINK> */}
+    </DivBox>
   )
 }
 
