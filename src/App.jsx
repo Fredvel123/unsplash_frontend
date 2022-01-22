@@ -21,8 +21,7 @@ function App() {
         <Route path='signup' element={<SignUp />} />
         <Route path='login' element={<LogIn />} />
         <Route path='home' element={register ? <Home /> : <Erro404 /> } />
-      </Routes>
-      
+      </Routes>      
     </BrowserRouter>
   );
 }
