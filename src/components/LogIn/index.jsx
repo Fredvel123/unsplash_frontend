@@ -1,12 +1,12 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // styled components
 import { ButtonLeft, DivBox, Header } from '../../styles/SignUp';
+import Inputs from '../SignUp/Inputs';
 // react router dom
 import { Link, useNavigate } from 'react-router-dom';
-import Inputs from '../SignUp/Inputs';
+// redux
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuth } from '../../redux-toolkit/slice/auth';
-// redux
 
 
 function LogIn() {
@@ -45,6 +45,7 @@ function LogIn() {
   useEffect(() => {
     localStorage.setItem('auth', JSON.stringify(auth))
   }, [auth]);
+  
   const navigate = useNavigate();
 
   const navigateToHome = async () => {
