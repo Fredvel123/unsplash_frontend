@@ -41,6 +41,9 @@ export const DivBox = styled.div`
   form button {
     color: ${colors.graywhite};
     width: 98.5%;
+    font-weight: 400;
+    letter-spacing: 3px;
+    font-family: ${fonts.letter7};
     text-align: center;
     cursor: pointer;
     margin-top: 3vh;

@@ -66,7 +66,7 @@ function LogIn() {
         <Link to='/' >
           <ButtonLeft />
         </Link>
-        <h2>Sign Up</h2>
+        <h2>Log In</h2>
       </Header>
       <form onSubmit={handlerSubmit} action="">
         <Inputs
@@ -83,7 +83,7 @@ function LogIn() {
           title='password'
           state={password}
           setState={setPassword} />
-      <button>send</button>
+      <button>Log In</button>
       </form>
       {auth.isLogged ?
        <h3>{auth.message}</h3>

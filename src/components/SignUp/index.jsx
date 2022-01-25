@@ -63,6 +63,7 @@ function SignUp() {
       message: res
     });
   }
+  // this code is for past at the next page if the user is register in the database.
   const navigateStartPage = async () => {
     const res = await response.message.isCreated
     if(res === true) {
@@ -71,7 +72,7 @@ function SignUp() {
   }
   useEffect(() => {
     navigateStartPage();
-  }, [handlerSubmit]);
+  }, [handlerSubmit]);  
   
   return(
     <DivBox>
@@ -79,7 +80,7 @@ function SignUp() {
         <Link to='/' >
           <ButtonLeft />
         </Link>
-        <h2>Sign Up</h2>
+        <h2>Create a new Account</h2>
       </Header>
       <form action="" onSubmit={handlerSubmit} >
         <Inputs 
@@ -119,9 +120,6 @@ function SignUp() {
       {response.error === true ?
         <h3>{response.message}</h3> 
       : <h3>{response.message.message}</h3> }
-      {/* {response.message.isCreated ? 
-      : null} */}
-      {/* <LINK to='/home' >Go to Home</LINK> */}
     </DivBox>
   )
 }

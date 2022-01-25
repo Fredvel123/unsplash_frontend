@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 // react router
 import { Link } from 'react-router-dom';
 // styled componetns
