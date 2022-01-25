@@ -23,6 +23,21 @@ export const StartDiv = styled.div`
     width: 45%;
     font-size: 25px;
   }
+  @media screen and (max-width: 750px) {
+    p {
+      width: 75%;
+      font-size: 23px;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    h2 {
+      font-size: 30px;
+    }
+    p {
+      width: 95%;
+      font-size: 19px;
+    }
+  }
 `
 
 export const Nav = styled.nav`
@@ -40,6 +55,16 @@ export const Nav = styled.nav`
     padding: 2vh 5%;
     &:hover{
       background: ${colors.sky};
+    }
+  }
+  @media screen and (max-width: 600px ){
+    margin-top: 3vh;
+    width: 90%;
+    flex-direction: column;
+    text-align: center;
+    a {
+      font-size: 18px ;
+      margin-bottom: 3vh;
     }
   }
 `
