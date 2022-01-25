@@ -24,7 +24,6 @@ function Home() {
     });
     const res = await info.json();
     setUser(res);
-    console.log(user);
   }
   useEffect(() => {
     getInfoUser(auth.token) 
@@ -43,7 +42,9 @@ function Home() {
       <Link to={`../${user._id}`} >
         <StarOutlined />
       </Link>
-      <h2 onClick={logOutApp} >Log out App</h2>
+      <Link to='/' >
+        <h2 onClick={logOutApp} >Log out App</h2>
+      </Link>
       <Cards />
     </Fragment>
   )

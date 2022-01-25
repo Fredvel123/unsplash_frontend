@@ -53,7 +53,6 @@ function Cards() {
           ) )   
         : null }
       </CardsImages>
-      <button onClick={() => console.log(images) } >get info</button>
       <Response state={response} setState={setresponse} />
     </Fragment>
   )
