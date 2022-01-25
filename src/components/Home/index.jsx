@@ -9,6 +9,7 @@ import { StarOutlined } from '@ant-design/icons';
 // react redux
 import { useDispatch, useSelector } from 'react-redux'
 import { setAuth } from '../../redux-toolkit/slice/auth';
+import { Header } from '../../styles/Home';
 
 function Home() {
   const auth = useSelector(state => state.auth.value);
@@ -42,17 +43,17 @@ function Home() {
 
   return(
     <Fragment>
-      <h2>Images App</h2>
-      <Link to={`../${user._id}`} >
-        <StarOutlined />
-          <h3>{firstName[0]}</h3>
-      </Link>
-      {/* <button onClick={getFirstName} >
-        infodasd
-      </button> */}
-      <Link to='/' >
-        <h2 onClick={logOutApp} >Log Out</h2>
-      </Link>
+      <Header>
+        <h2>Images App</h2>
+        <nav>
+          <Link to={`../${user._id}`} >
+            <h3>{firstName[0]}</h3>
+          </Link>
+          <Link to='/' >
+            <h3 onClick={logOutApp} >LogOut</h3>
+          </Link>
+        </nav>
+      </Header>
       <Cards />
     </Fragment>
   )
