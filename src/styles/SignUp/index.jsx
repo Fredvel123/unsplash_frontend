@@ -27,6 +27,7 @@ export const Header = styled.header`
 export const DivBox = styled.div`
   margin: 5vh 10%;
   h3 {
+    color: ${colors.white};
     font-weight: 100;
     margin-top: 2vh;
     font-size: 15px;
@@ -38,6 +39,7 @@ export const DivBox = styled.div`
     flex-direction: column;
   }
   form button {
+    color: ${colors.graywhite};
     width: 98.5%;
     text-align: center;
     cursor: pointer;

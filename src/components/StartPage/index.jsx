@@ -1,18 +1,22 @@
 import React, { Fragment } from 'react';
+// react router
 import { Link } from 'react-router-dom';
+// styled componetns
+import { Nav, StartDiv } from '../../styles/StartPage/index';
 
 function StartPage() {
   return(
-    <Fragment>
-      <h2>Unsplush fake app</h2>
-      <p>You need an account for get in at this app, you can craete a new accout in the SignUp section 
-         or if you already have an account you can go through Log In section.
+    <StartDiv>
+      <h2>Images app</h2>
+      <p>
+        You need an account for access at this app, you can create a new account in the "SignUp" section 
+        or if you already have an account you can go through "LogIn" section.
       </p>
-      <nav>
-        <Link to='/signup' >Sign up</Link>
+      <Nav>
+        <Link to='/signup' >Sign Up</Link>
         <Link to='/login' >Log In</Link>
-      </nav>
-    </Fragment>
+      </Nav>
+    </StartDiv>
   )
 }
 
