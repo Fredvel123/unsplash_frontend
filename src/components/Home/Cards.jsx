@@ -9,16 +9,15 @@ import Response from './Response';
 
 function Cards() {
   const [images, setImages] = useState([]);
-  const movies = ["tree", "forest", "computer", "neon", "guitar"];
-  const randomMovie = [];
   // redux
   const auth = useSelector(state =>  state.auth.value);
-
+  // algorithm for get random date image.  
+  const movies = ["tree", "forest", "computer", "neon", "guitar", 'cars', 'new york'];
+  const randomMovie = [];
   const getApiInfo = async randomMovies => {
     const info = await fetch(`https://api.unsplash.com/search/photos?client_id=57YqoVxkm2c-SB58C2OwRUB0y1jDlFVs5WqfLKHR-JE&page=1&per_page=3&query=${randomMovies}`)
     const res = await info.json();
     setImages(res.results)
-    console.log(images);
   }
   useEffect(() => {
     const item = movies[Math.floor(Math.random()*movies.length )];
@@ -26,15 +25,9 @@ function Cards() {
     getApiInfo(randomMovie);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   
-  const [imageDB, setimageDB] = useState('');
-  const addImageToFavorites = (elem) => {
-    const item = images.filter(el => el.id === elem);
-    setimageDB(item[0]);
-    console.log(imageDB);
-    addImageToDB(imageDB.urls.small);
-  }
   const [response, setresponse] = useState([]);
-  const addImageToDB = async url => {
+  const addImageToDB = async elem => {
+    const item = images.filter(el => el.id === elem);
     const newImage = await fetch('http://imagesfredvel.herokuapp.com/api/images/add', {
       method: 'post',
       headers: {
@@ -42,14 +35,12 @@ function Cards() {
         "access-token": auth.token
       },
       body: JSON.stringify({
-        imageUrl: url
+        imageUrl: item[0].urls.small
       })
     })
     const res = await newImage.json();
     setresponse(res);
-    console.log(response);
   }
-
   return(
     <Fragment>
       <CardsImages>
@@ -57,7 +48,7 @@ function Cards() {
           images.map((item, index) => (
             <Image >
               <img src={item.urls.regular} alt="" width={150} key={index} />
-              <IconPlus onClick={() =>  addImageToFavorites(item.id) } />
+              <IconPlus onClick={() => addImageToDB(item.id)}/>
             </Image>
           ) )   
         : null }

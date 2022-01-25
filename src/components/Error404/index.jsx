@@ -1,9 +1,17 @@
 import React, { Fragment } from 'react';
+// images
+import errorimg from './images/error.png'
+// router
+import { Link } from 'react-router-dom';
 
 function Erro404() {
   return(
     <Fragment>
-      <h1>You have no acces here, create a new account or if you alraeady have</h1>
+      <h1>Sorry, You have no access here. </h1>
+      <img src={errorimg} width={250} alt="" />
+      <Link to='/' >Go Home</Link>
+      <Link to='/signup' >Sign Up</Link>
+      <Link to='/login' >Log In</Link>
     </Fragment>
   )
 }

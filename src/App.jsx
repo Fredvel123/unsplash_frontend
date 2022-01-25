@@ -31,7 +31,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path=':id' element={ <User /> } />
+        <Route path=':id' element={auth.isLogged ? <User /> : <Erro404 />}/>
         <Route index element={<StartPage />} />
         <Route path='signup' element={<SignUp />} />
         <Route path='login' element={<LogIn />} />
